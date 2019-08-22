@@ -67,4 +67,40 @@ class Menu extends CI_Controller
             redirect('menu/submenu');
         }
     }
+
+    public function kpi()
+    {
+        $data['title'] = 'KPI';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+
+        $data['pers'] = $this->db->get('perspektif_isi')->result_array();
+
+        $this->form_validation->set_rules('kode_perspektif', 'Kode Perspektif', 'required');
+        $this->form_validation->set_rules('indikator', 'indikator', 'required');
+
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('menu/kpi', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'kode_perspektif' => $this->input->post('kode_perspektif'),
+                'indikator' => $this->input->post('indikator'),
+                'polaritas' => $this->input->post('polaritas'),
+                'satuan' => $this->input->post('satuan'),
+                'bobot' => $this->input->post('bobot'),
+                'target_tahunan' => $this->input->post('targettahunan'),
+                'target_bulanan' => $this->input->post('targetbulanan'),
+                'real' => $this->input->post('real'),
+
+            ];
+            $this->db->insert('perspektif_isi', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Perspektif telah ditambahkan.</div>');
+            redirect('menu/kpi');
+        }
+    }
 }

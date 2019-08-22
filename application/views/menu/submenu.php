@@ -4,9 +4,9 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $title; ?></h1>
     <?php if (validation_errors()) : ?>
-    <div class="alert alert-danger" role="alert">
-        <?= validation_errors(); ?>
-    </div>
+        <div class="alert alert-danger" role="alert">
+            <?= validation_errors(); ?>
+        </div>
     <?php endif; ?>
 
     <?= $this->session->flashdata('message'); ?>
@@ -30,20 +30,20 @@
                 <tbody>
                     <?php $i = 1; ?>
                     <?php foreach ($subMenu as $sm) : ?>
-                    <tr>
-                        <th scope="row"><?= $i; ?></th>
-                        <td><?= $sm['title']; ?></td>
-                        <td><?= $sm['menu']; ?></td>
-                        <td><?= $sm['url']; ?></td>
-                        <td><?= $sm['icon']; ?></td>
-                        <td><?= $sm['is_active']; ?></td>
+                        <tr>
+                            <th scope="row"><?= $i; ?></th>
+                            <td><?= $sm['title']; ?></td>
+                            <td><?= $sm['menu']; ?></td>
+                            <td><?= $sm['url']; ?></td>
+                            <td><?= $sm['icon']; ?></td>
+                            <td><?= $sm['is_active']; ?></td>
 
-                        <td>
-                            <a href="" class="badge badge-success">edit</a>
-                            <a href="" class="badge badge-danger">delete</a>
-                        </td>
-                    </tr>
-                    <?php $i++; ?>
+                            <td>
+                                <a href="" class="badge badge-success">edit</a>
+                                <a href="" class="badge badge-danger">delete</a>
+                            </td>
+                        </tr>
+                        <?php $i++; ?>
                     <?php endforeach; ?>
                 </tbody>
             </table>
@@ -77,7 +77,7 @@
                         <select name="menu_id" id="menu_id" class="form-control">
                             <option value="">Select Menu</option>
                             <?php foreach ($menu as $m) : ?>
-                            <option value="<?= $m['id']; ?>"><?= $m['menu']; ?></option>
+                                <option value="<?= $m['id']; ?>"><?= $m['menu']; ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -103,4 +103,4 @@
             </form>
         </div>
     </div>
-</div> 
+</div>

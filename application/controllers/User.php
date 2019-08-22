@@ -26,7 +26,6 @@ class User extends CI_Controller
         $data['title'] = 'Dashboard Kinerja';
         $data['user'] = $this->db->get_where('user', ['email' =>
         $this->session->userdata('email')])->row_array();
-        $data['pers1'] = $this->db->get('perspektif_isi')->result_array();
         $data['pers'] = $this->db->get('perspektif')->result_array();
 
 

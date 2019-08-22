@@ -76,7 +76,7 @@
 </script>
 <script>
     $(document).ready(function() {
-        $('#tabelku').DataTable();
+        $('').DataTable();
     });
 </script>
 </body>
