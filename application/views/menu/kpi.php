@@ -30,27 +30,25 @@
                 <tbody>
                     <?php $i = 1; ?>
                     <?php foreach ($pers as $p) : ?>
-                        <tr>
-                            <th scope="row"><?= $i; ?></th>
-                            <td><?= $p['kode_perspektif']; ?></td>
-                            <td><?= $p['indikator']; ?></td>
-                            <td><?= $p['polaritas']; ?></td>
-                            <td><?= $p['satuan']; ?></td>
-                            <td><?= $p['bobot']; ?></td>
-                            <td><?= $p['target_tahunan']; ?></td>
-                            <td><?= $p['target_bulanan']; ?></td>
-                            <td><?= $p['real']; ?></td>
-                            <td>
-                                <a href="" class="badge badge-success" data-toggle="modal" data-target="#editperspektif">edit</a>
-                                <a href="" class="badge badge-danger">delete</a>
-                            </td>
-                        </tr>
-                        <?php $i++; ?>
+                    <tr>
+                        <th scope="row"><?= $i; ?></th>
+                        <td><?= $p['kode_perspektif']; ?></td>
+                        <td><?= $p['indikator']; ?></td>
+                        <td><?= $p['polaritas']; ?></td>
+                        <td><?= $p['satuan']; ?></td>
+                        <td><?= $p['bobot']; ?></td>
+                        <td><?= $p['target_tahunan']; ?></td>
+                        <td><?= $p['target_bulanan']; ?></td>
+                        <td><?= $p['real']; ?></td>
+                        <td>
+                            <a href="" class="badge badge-success" data-toggle="modal" data-target="#editperspektif">edit</a>
+                            <a href="" class="badge badge-danger">delete</a>
+                        </td>
+                    </tr>
+                    <?php $i++; ?>
                     <?php endforeach; ?>
                 </tbody>
             </table>
-
-
         </div>
     </div>
 </div>

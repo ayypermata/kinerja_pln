@@ -7,6 +7,7 @@ class Menu extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        $this->load->model('menu_model');
     }
     public function index()
     {
@@ -103,4 +104,89 @@ class Menu extends CI_Controller
             redirect('menu/kpi');
         }
     }
+    public function target_perspektif()
+    {
+        $data['title'] = 'Target Perspektif';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $data['target_pelanggan'] = $this->menu_model->getAllData('tbl_target_penambahan_pelanggan');
+
+        $this->form_validation->set_rules('nama_unit', 'Nama Unit', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('menu/target_perspektif', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'nama_unit' => $this->input->post('nama_unit'),
+                'jan' => $this->input->post('jan'),
+                'feb' => $this->input->post('feb'),
+                'mar' => $this->input->post('mar'),
+                'apr' => $this->input->post('apr'),
+                'mei' => $this->input->post('mar'),
+                'jun' => $this->input->post('jun'),
+                'jul' => $this->input->post('jul'),
+                'agu' => $this->input->post('agu'),
+                'sep' => $this->input->post('sep'),
+                'okt' => $this->input->post('okt'),
+                'nov' => $this->input->post('nov'),
+                'des' => $this->input->post('des'),
+            ];
+            $this->db->insert('tbl_target_penambahan_pelanggan', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Penambahan Pelanggan telah ditambahkan.</div>');
+            redirect('menu/target_perspektif');
+        }
+    }
+    public function update_data_target($id)
+    {
+        $data['title'] = 'Edit Data';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+
+        $data['data_pelanggan'] = $this->menu_model->getAllData('tbl_target_penambahan_pelanggan');
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('menu/edit_data_target_pelanggan', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function proses_data_target()
+    {
+        $data = array(
+            'jan' => $this->input->post('jan'),
+            'feb' => $this->input->post('feb'),
+            'mar' => $this->input->post('mar'),
+            'apr' => $this->input->post('apr'),
+            'mei' => $this->input->post('mar'),
+            'jun' => $this->input->post('jun'),
+            'jul' => $this->input->post('jul'),
+            'agu' => $this->input->post('agu'),
+            'sep' => $this->input->post('sep'),
+            'okt' => $this->input->post('okt'),
+            'nov' => $this->input->post('nov'),
+            'des' => $this->input->post('des'),
+        );
+
+        $this->menu_model->updateData('tbl_target_penambahan_pelanggan', $data);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Data Penambahan Pelanggan telah diupdate.</div>');
+        redirect('menu/target_perspektif');
+    }
 }
+
+// 'jan' => $this->input->post('jan'),
+// 'feb' => $this->input->post('feb'),
+// 'mar' => $this->input->post('mar'),
+// 'apr' => $this->input->post('apr'),
+// 'mei' => $this->input->post('mar'),
+// 'jun' => $this->input->post('jun'),
+// 'jul' => $this->input->post('jul'),
+// 'agu' => $this->input->post('agu'),
+// 'sep' => $this->input->post('sep'),
+// 'okt' => $this->input->post('okt'),
+// 'nov' => $this->input->post('nov'),
+// 'des' => $this->input->post('des'),

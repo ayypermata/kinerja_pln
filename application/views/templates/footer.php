@@ -44,8 +44,8 @@
 
 <!-- Core plugin JavaScript-->
 <script src="<?= base_url('assets/'); ?>vendor/jquery-easing/jquery.easing.min.js"></script>
-<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="<?= base_url('assets/'); ?>js/jquery.min.js"></script>
+<script type="text/javascript" src="<?= base_url('assets/'); ?>js/jquery.dataTables.min.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url('assets/'); ?>js/sb-admin-2.min.js">
@@ -74,9 +74,10 @@
 
     });
 </script>
+
 <script>
     $(document).ready(function() {
-        $('').DataTable();
+        $('#datatabel').DataTable();
     });
 </script>
 </body>

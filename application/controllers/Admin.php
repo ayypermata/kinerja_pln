@@ -7,6 +7,8 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+
+        $this->load->model('menu_model');
     }
     public function index()
     {
@@ -18,6 +20,20 @@ class Admin extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('admin/index', $data);
+        $this->load->view('templates/footer');
+    }
+    public function kinerja()
+    {
+        $data['title'] = 'Dashboard Kinerja';
+        $data['user'] = $this->db->get_where('user', ['email' =>
+        $this->session->userdata('email')])->row_array();
+        $data['pers'] = $this->db->get('perspektif')->result_array();
+
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('admin/kinerja', $data);
         $this->load->view('templates/footer');
     }
     public function role()
